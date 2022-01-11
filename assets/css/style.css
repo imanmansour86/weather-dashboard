@@ -1,10 +1,9 @@
 * {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: "Fira Sans", sans-serif;
 }
 .display-4 {
   text-align: center;
 }
-
 
 #today-weather {
   display: flex;
@@ -14,11 +13,34 @@
   border-style: groove;
 }
 
-#city-name{
+#city-name {
   font-size: 40px;
 }
-.custom-nav{
-  display:flex;
-  flex-direction:row;
-  justify-content:center;
+.custom-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#today-weather {
+  background-color: grey;
+}
+
+#day-card {
+  background-color: #4169e1;
+  width: 19%;
+  color: white;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+#forecast {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+li {
+  cursor: pointer;
 }
