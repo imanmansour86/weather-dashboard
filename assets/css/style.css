@@ -44,3 +44,8 @@
 li {
   cursor: pointer;
 }
+
+#child-container {
+  display: flex;
+  flex-direction: row;
+}
