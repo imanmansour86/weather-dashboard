@@ -9,13 +9,32 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  line-height: 2;
+  line-height: 1;
   border-style: groove;
+  height: 50%;
 }
 
 #city-name {
   font-size: 40px;
+  padding: 10px;
 }
+
+#temp {
+  padding: 10px;
+}
+
+#humid {
+  padding: 10px;
+}
+
+#win-speed {
+  padding: 10px;
+}
+
+#uv-index {
+  padding: 10px;
+}
+
 .custom-nav {
   display: flex;
   flex-direction: row;
