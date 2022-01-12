@@ -118,11 +118,11 @@ function getWeatherData(city) {
 
           //UV Index color checks
           if (0 <= data.current.uvi <= 2) {
-            $("#uv-index").css("background-color", "yellow");
+            $("#uv-index").css("background-color", "green");
           } else if (3 <= data.current.uvi <= 5) {
-            $("#uv-index").css("background-color", "orange");
+            $("#uv-index").css("background-color", "yellow");
           } else if (data.current.uvi >= 6) {
-            $("#uv-index").css("background-color", "red");
+            $("#uv-index").css("background-color", "orange");
           }
 
           $("#forecast").empty(); // empty forecast div when search for another city

@@ -6,7 +6,7 @@ This app allows uers to see weather conditions for cities. Using OpenWeather API
 
 ## Summary
 
-When the page loads the user is presented with a search field where a city name can be entered. The current weather for that city loads showing city name, date, icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index. The UV index displays a color that represents weather conditions in that city (low: yellow, moderate: orange, or high: red). The weather app also displays a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity. When clicking a city in search history the user is presented again with current and future conditions for that city.
+When the page loads the user is presented with a search field where a city name can be entered. The current weather for that city loads showing city name, date, icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index. The UV index displays a color that represents weather conditions in that city (low: green, moderate: yellow, or high: orange). The weather app also displays a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity. When clicking a city in search history the user is presented again with current and future conditions for that city.
 
 ## Screenshots from the app
 
