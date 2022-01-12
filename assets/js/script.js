@@ -137,7 +137,6 @@ function getWeatherData(city) {
             var displayTemp = $("<div>").text(
               "Temp: " + data.daily[i].temp.day
             );
-            parentDiv.append(displayTemp);
 
             var displayIcon = $("<div>");
 
@@ -153,6 +152,7 @@ function getWeatherData(city) {
             var displayHumid = $("<div>").text(
               "Humidity: " + data.daily[i].humidity
             );
+            parentDiv.append(displayTemp);
             parentDiv.append(displayHumid);
           }
         });
