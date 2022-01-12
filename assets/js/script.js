@@ -52,7 +52,7 @@ function getWeatherData(city) {
   $("#search-input").val("");
 
   requestUrl =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
     encodeURIComponent(city) +
     "&limit=5&appid=e6eb53717feb8f61869e78a5635478ed";
   //call first api with city passed from user
@@ -86,7 +86,7 @@ function getWeatherData(city) {
       }
       //second api call
       secondLink =
-        "http://api.openweathermap.org/data/2.5/onecall?lat=" +
+        "https://api.openweathermap.org/data/2.5/onecall?lat=" +
         data[0].lat +
         "&lon=" +
         data[0].lon +
