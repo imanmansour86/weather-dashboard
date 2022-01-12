@@ -2,8 +2,6 @@
 var currentTime = $("#current-time");
 var search = $("#search-button");
 
-$("#weather-container").hide();
-
 //Handle display time
 function displayTime() {
   return moment().format("MM/DD/YYYY");
@@ -12,6 +10,12 @@ function displayTime() {
 //Handle local storage
 function loadSeachHistory() {
   var allCities = JSON.parse(localStorage.getItem("searchHistory") || "[]"); //read items from storage, return empty array if nothing exists
+  console.log("t", allCities.length);
+  //hide weather container when we don't have any city in storage
+  if (allCities.length === 0) {
+    $("#weather-container").hide();
+    return;
+  }
 
   //Display city in search histroy
   for (value of allCities) {
@@ -39,6 +43,7 @@ $("#my-form").on("submit", function (e) {
 });
 
 function getWeatherData(city) {
+  console.log("test", city);
   if (city === "") {
     return false; //don't return results if search is empty
   }
@@ -70,7 +75,12 @@ function getWeatherData(city) {
         //prevent duplicate entries
         mySearch.push(city);
         localStorage.setItem("searchHistory", JSON.stringify(mySearch));
-        var newItem = $("<li>").addClass("list-group-item").text(city);
+        var newItem = $("<li>")
+          .addClass("list-group-item")
+          .text(city)
+          .on("click", function () {
+            getWeatherData(city); //call the function when a new city is added to search history list
+          });
 
         $(".list-group").append(newItem);
       }
