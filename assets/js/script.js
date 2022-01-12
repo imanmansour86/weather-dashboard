@@ -71,13 +71,26 @@ function getWeatherData(city) {
           return response.json();
         })
         .then(function (data) {
-          //  uvIndex=[favorable, moderate, or severe];
+          console.log(data);
 
           $("#city").text(city.charAt(0).toUpperCase() + city.slice(1));
           $("#today-date").text("(" + displayTime() + ")");
-          $("#weather-condition")
-            .removeClass()
-            .addClass(getIcon(data.current.weather[0].main));
+          // $("#weather-condition")
+          //   .removeClass()
+          //   .addClass(getIcon(data.current.weather[0].main));
+          // "http://openweathermap.org/img/wn/" +
+          //   data.current.weather[0].icon +
+          //   "@2x.png";
+
+          var imgSrc =
+            "http://openweathermap.org/img/wn/" +
+            data.current.weather[0].icon +
+            "@2x.png";
+
+          $("#image").attr("src", imgSrc);
+
+          console.log(data.current.weather[0].icon);
+
           $("#temp").text("Temperature: " + data.current.temp + " °F");
           $("#humid").text("Humidity: " + data.current.humidity + "%");
           $("#win-speed").text(
@@ -102,10 +115,17 @@ function getWeatherData(city) {
             parentDiv.append(displayTemp);
 
             var displayIcon = $("<div>");
-            var icon = $("<i>").addClass(
-              getIcon(data.daily[i].weather[0].main)
-            );
-            displayIcon.append(icon);
+            // var icon = $("<i>").addClass(
+            //   getIcon(data.daily[i].weather[0].main)
+            // );
+
+            var imgForecastSrc =
+              "http://openweathermap.org/img/wn/" +
+              data.daily[i].weather[0].icon +
+              "@2x.png";
+
+            var forecastImg = $("<img>").attr("src", imgForecastSrc);
+            displayIcon.append(forecastImg);
 
             parentDiv.append(displayIcon);
             var displayHumid = $("<div>").text(
@@ -115,21 +135,4 @@ function getWeatherData(city) {
           }
         });
     });
-}
-
-function getIcon(value) {
-  switch (value) {
-    case "Clouds":
-      return "fas fa-cloud";
-      break;
-    case "Rain":
-      return "fas fa-cloud-rain";
-      break;
-    case "Snow":
-      return "fas fa-snowflake";
-    case "Clear":
-      return "fas fa-sun";
-    default:
-      return "fas fa-question";
-  }
 }
