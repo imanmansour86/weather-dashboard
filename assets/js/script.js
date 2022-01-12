@@ -7,67 +7,71 @@ function displayTime() {
   return moment().format("MM/DD/YYYY");
 }
 
+//Handle local storage
 function loadSeachHistory() {
-  var allCities = JSON.parse(localStorage.getItem("searchHistory") || "[]");
+  var allCities = JSON.parse(localStorage.getItem("searchHistory") || "[]"); //read items from storage, return empty array if nothing exists
 
+  //Display city in search histroy
   for (value of allCities) {
     var singleSearch = $("<li>")
       .addClass("list-group-item")
       .text(value)
       .on("click", function (e) {
         getWeatherData(e.target.innerText);
-        console.log("here", e);
       });
 
     $(".list-group").append(singleSearch);
   }
-  if (allCities.length > 0) getWeatherData(allCities[0]);
+  if (allCities.length > 0) getWeatherData(allCities[0]); //pass first city to the function to display its weather
 }
 
 loadSeachHistory();
 
+//Handle form submit
 $("#my-form").on("submit", function (e) {
   e.preventDefault();
-  var city = $("#search-input").val().toLowerCase();
+  var city = $("#search-input").val().toLowerCase(); //get city name from user input
   getWeatherData(city);
   console.log("city", city);
 });
 
 function getWeatherData(city) {
-  console.log(city);
   if (city === "") {
-    return false;
+    return false; //don't return results if search is empty
   }
 
+  //clear search field after user searches a city
   $("#search-input").val("");
 
   requestUrl =
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
     encodeURIComponent(city) +
     "&limit=5&appid=e6eb53717feb8f61869e78a5635478ed";
-
+  //call first api with city passed from user
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log("data here", data);
+      console.log("data", data);
 
       if (data.length === 0) {
+        //check if city is not valid
         alert("Please enter a valid city");
         return;
       }
 
-      //show search histroy
+      //handle search histroy
       var mySearch = JSON.parse(localStorage.getItem("searchHistory") || "[]");
       if (!mySearch.includes(city)) {
+        //prevent duplicate entries
         mySearch.push(city);
         localStorage.setItem("searchHistory", JSON.stringify(mySearch));
         var newItem = $("<li>").addClass("list-group-item").text(city);
 
         $(".list-group").append(newItem);
       }
-
+      //second api call
       secondLink =
         "http://api.openweathermap.org/data/2.5/onecall?lat=" +
         data[0].lat +
@@ -82,16 +86,16 @@ function getWeatherData(city) {
         .then(function (data) {
           console.log(data);
 
-          $("#city").text(city.charAt(0).toUpperCase() + city.slice(1));
-          $("#today-date").text("(" + displayTime() + ")");
+          $("#city").text(city.charAt(0).toUpperCase() + city.slice(1)); //display city name
+          $("#today-date").text("(" + displayTime() + ")"); //display today's time by calling the function
 
+          //building today's weather page
           var imgSrc =
             "http://openweathermap.org/img/wn/" +
             data.current.weather[0].icon +
             "@2x.png";
 
           $("#image").attr("src", imgSrc);
-
           $("#temp").text("Temperature: " + data.current.temp + " °F");
           $("#humid").text("Humidity: " + data.current.humidity + "%");
           $("#win-speed").text(
@@ -99,6 +103,7 @@ function getWeatherData(city) {
           );
           $("#uv-index").text("UV Index: " + data.current.uvi);
 
+          //UV Index color checks
           if (0 <= data.current.uvi <= 2) {
             $("#uv-index").css("background-color", "yellow");
           } else if (3 <= data.current.uvi <= 5) {
@@ -107,10 +112,8 @@ function getWeatherData(city) {
             $("#uv-index").css("background-color", "red");
           }
 
-          $("#date-1").text(moment().add(1, "d").format("MM/DD/YYYY"));
-
-          $("#forecast").empty();
-          //build the forecast
+          $("#forecast").empty(); // empty forecast div when search for another city
+          //build the 5 day forecast
           for (i = 1; i < 6; i++) {
             var parentDiv = $("<div>").attr("id", "day-card");
             $("#forecast").append(parentDiv);
