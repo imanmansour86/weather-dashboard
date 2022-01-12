@@ -2,6 +2,8 @@
 var currentTime = $("#current-time");
 var search = $("#search-button");
 
+$("#weather-container").hide();
+
 //Handle display time
 function displayTime() {
   return moment().format("MM/DD/YYYY");
@@ -30,6 +32,7 @@ loadSeachHistory();
 //Handle form submit
 $("#my-form").on("submit", function (e) {
   e.preventDefault();
+  $("#weather-container").show();
   var city = $("#search-input").val().toLowerCase(); //get city name from user input
   getWeatherData(city);
   console.log("city", city);
