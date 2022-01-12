@@ -10,7 +10,7 @@ function displayTime() {
 //Handle local storage
 function loadSeachHistory() {
   var allCities = JSON.parse(localStorage.getItem("searchHistory") || "[]"); //read items from storage, return empty array if nothing exists
-  console.log("t", allCities.length);
+
   //hide weather container when we don't have any city in storage
   if (allCities.length === 0) {
     $("#weather-container").hide();
