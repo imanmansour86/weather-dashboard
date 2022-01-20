@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This app allows uers to see weather conditions for cities. Using OpenWeather API, weather data for cities is displayed. The app uses Geocoding API as well as One Call API to get the results by city name then get the lat and lon to build our data.
+This app allows users to see weather conditions for cities. Using OpenWeather API, weather data for cities is displayed. The app uses Geocoding API as well as One Call API to get the results by city name then get the lat and lon to build our data.
 
 ## Summary
 
