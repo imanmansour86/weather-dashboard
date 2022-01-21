@@ -41,3 +41,7 @@ Iman Mansour
 - [Github](https://github.com/imanmansour86)
 - [LinkedIn](https://www.linkedin.com/in/iman-mansour-51391515/)
 - [Email](mailto:imanmansour86@gmail.com)
+
+## License
+
+[MIT Open Source Software](https://choosealicense.com/licenses/mit/)
